@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -23,5 +25,14 @@ module.exports = {
                 },
             },            
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendors',
+            minChunks: Infinity
+        }),
+        new HtmlPlugin({
+            title: 'learn-webpack'
+        })
+    ]
 };
